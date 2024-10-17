@@ -8,20 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var currentType: MindType = .canvas
     var body: some View {
         NavigationSplitView {
             List {
-                Text("js-Canvas")
-                    .onTapGesture {
-                        
-                    }
-                Text("native-swiftUI")
-                Text("c render HTML")
-                Spacer()
+                ForEach(MindType.allCases, id: \.self) { type in
+                    listRow(type)
+                }
             }
         } detail: {
-            Text("test")
+            mindView
         }
-
+    }
+    
+    @ViewBuilder
+    private func listRow(_ mindType: MindType) -> some View {
+        Text(mindType.rowTitle())
+            .onTapGesture {
+                currentType = mindType
+            }
+    }
+    
+    @ViewBuilder
+    private var mindView: some View {
+        switch currentType {
+        case .canvas:
+            Text("test")
+        case .native:
+            Text("test2")
+        case .cmaker:
+            Text("test3")
+        }
     }
 }
