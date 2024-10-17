@@ -17,6 +17,8 @@
 		8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */; };
 		8C8BBC252CC14772006627C0 /* sidebar.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1F2CC14772006627C0 /* sidebar.js */; };
 		8C8BBC262CC14772006627C0 /* mindMapping.html in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC202CC14772006627C0 /* mindMapping.html */; };
+		8C8BBC2C2CC15896006627C0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC2B2CC15896006627C0 /* Node.swift */; };
+		8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
 		8C8BBC1F2CC14772006627C0 /* sidebar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sidebar.js; sourceTree = "<group>"; };
 		8C8BBC202CC14772006627C0 /* mindMapping.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mindMapping.html; sourceTree = "<group>"; };
+		8C8BBC2B2CC15896006627C0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,9 @@
 		8C8BBC0A2CC0AEB0006627C0 /* XMindDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8C8BBC292CC15876006627C0 /* Common */,
+				8C8BBC282CC14BE7006627C0 /* CMindMaker */,
+				8C8BBC272CC14BD2006627C0 /* SwiftUIMindMapping */,
 				8C8BBC1A2CC14754006627C0 /* CanvasMindMapping */,
 				8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */,
 				8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */,
@@ -93,6 +100,37 @@
 				8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */,
 			);
 			path = CanvasMindMapping;
+			sourceTree = "<group>";
+		};
+		8C8BBC272CC14BD2006627C0 /* SwiftUIMindMapping */ = {
+			isa = PBXGroup;
+			children = (
+				8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */,
+			);
+			path = SwiftUIMindMapping;
+			sourceTree = "<group>";
+		};
+		8C8BBC282CC14BE7006627C0 /* CMindMaker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CMindMaker;
+			sourceTree = "<group>";
+		};
+		8C8BBC292CC15876006627C0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8C8BBC2A2CC15889006627C0 /* Models */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8C8BBC2A2CC15889006627C0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8C8BBC2B2CC15896006627C0 /* Node.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,7 +210,9 @@
 			files = (
 				8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */,
 				8C8BBC0C2CC0AEB0006627C0 /* XMindDemoApp.swift in Sources */,
+				8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */,
 				8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */,
+				8C8BBC2C2CC15896006627C0 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
