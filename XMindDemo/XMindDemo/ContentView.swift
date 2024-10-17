@@ -9,12 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            List {
+                Text("js-Canvas")
+                    .onTapGesture {
+                        
+                    }
+                Text("native-swiftUI")
+                Text("c render HTML")
+                Spacer()
+            }
+        } detail: {
+            Text("test")
         }
-        .padding()
+
     }
 }
