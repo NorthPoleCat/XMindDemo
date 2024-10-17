@@ -11,6 +11,12 @@
 		8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */; };
 		8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0F2CC0AEB1006627C0 /* Assets.xcassets */; };
 		8C8BBC132CC0AEB1006627C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC122CC0AEB1006627C0 /* Preview Assets.xcassets */; };
+		8C8BBC212CC14772006627C0 /* markdown.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1B2CC14771006627C0 /* markdown.js */; };
+		8C8BBC222CC14772006627C0 /* menu.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1C2CC14772006627C0 /* menu.js */; };
+		8C8BBC232CC14772006627C0 /* mindMapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1D2CC14772006627C0 /* mindMapping.js */; };
+		8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */; };
+		8C8BBC252CC14772006627C0 /* sidebar.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1F2CC14772006627C0 /* sidebar.js */; };
+		8C8BBC262CC14772006627C0 /* mindMapping.html in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC202CC14772006627C0 /* mindMapping.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +26,12 @@
 		8C8BBC0F2CC0AEB1006627C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C8BBC122CC0AEB1006627C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8C8BBC142CC0AEB1006627C0 /* XMindDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XMindDemo.entitlements; sourceTree = "<group>"; };
+		8C8BBC1B2CC14771006627C0 /* markdown.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = markdown.js; sourceTree = "<group>"; };
+		8C8BBC1C2CC14772006627C0 /* menu.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = menu.js; sourceTree = "<group>"; };
+		8C8BBC1D2CC14772006627C0 /* mindMapping.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mindMapping.js; sourceTree = "<group>"; };
+		8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
+		8C8BBC1F2CC14772006627C0 /* sidebar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sidebar.js; sourceTree = "<group>"; };
+		8C8BBC202CC14772006627C0 /* mindMapping.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mindMapping.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +64,7 @@
 		8C8BBC0A2CC0AEB0006627C0 /* XMindDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8C8BBC1A2CC14754006627C0 /* CanvasMindMapping */,
 				8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */,
 				8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */,
 				8C8BBC0F2CC0AEB1006627C0 /* Assets.xcassets */,
@@ -67,6 +80,19 @@
 				8C8BBC122CC0AEB1006627C0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8C8BBC1A2CC14754006627C0 /* CanvasMindMapping */ = {
+			isa = PBXGroup;
+			children = (
+				8C8BBC1B2CC14771006627C0 /* markdown.js */,
+				8C8BBC1C2CC14772006627C0 /* menu.js */,
+				8C8BBC202CC14772006627C0 /* mindMapping.html */,
+				8C8BBC1D2CC14772006627C0 /* mindMapping.js */,
+				8C8BBC1F2CC14772006627C0 /* sidebar.js */,
+				8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */,
+			);
+			path = CanvasMindMapping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +154,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C8BBC132CC0AEB1006627C0 /* Preview Assets.xcassets in Resources */,
+				8C8BBC212CC14772006627C0 /* markdown.js in Resources */,
 				8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */,
+				8C8BBC222CC14772006627C0 /* menu.js in Resources */,
+				8C8BBC232CC14772006627C0 /* mindMapping.js in Resources */,
+				8C8BBC252CC14772006627C0 /* sidebar.js in Resources */,
+				8C8BBC262CC14772006627C0 /* mindMapping.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +172,7 @@
 			files = (
 				8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */,
 				8C8BBC0C2CC0AEB0006627C0 /* XMindDemoApp.swift in Sources */,
+				8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

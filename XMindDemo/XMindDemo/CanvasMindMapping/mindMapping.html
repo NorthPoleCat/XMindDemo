@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <style type="text/css">
+        html, body {
+          width:  100%;
+          height: 100%;
+          margin: 0px;
+        }
+        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 100;
+            height: 200;
+        }
+        .context-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .context-menu ul li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .context-menu ul li:hover {
+            background-color: #eee;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            margin-right: 250px; /* Adjust this width to match the sidebar width */
+            padding: 20px;
+        }
+
+        .sidebar {
+            display: none;
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 250px; /* Width of the sidebar */
+            height: 100%;
+            background-color: #f4f4f4;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto; /* Adds a scrollbar if content overflows */
+        }
+        
+        .input-field {
+            margin: 10px 0;
+        }
+                
+        .input-field input, .input-field textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .preview {
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            overflow-y: auto;
+        }
+        
+        .preview h1, .preview h2, .preview h3 {
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                margin-right: 0;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-left: none;
+                box-shadow: none;
+            }
+        }
+        
+        /* tabBar css*/
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 2px -2px gray;
+            z-index: 1000; /* 确保功能栏在最上层 */
+            cursor: move; /* 鼠标悬停时显示拖拽图标 */
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            border-radius: 4px;
+        }
+        .content {
+            padding: 20px;
+            margin-top: 70px; /* 调整这个值以确保内容不会被导航栏覆盖 */
+        }
+        textarea {
+            width: 100%; /* Ensure textarea takes full width of its container */
+            max-width: 100%; /* Prevent textarea from exceeding container width */
+            height: auto; /* Reset height */
+            overflow: hidden; /* Prevent scrollbars */
+        }
+    </style>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <div style="overflow: scroll;">
+        <div id="contextMenu" class="context-menu">
+            <ul>
+                <li onclick="addOption1()">Add</li>
+                <li onclick="delOption2()">Delete</li>
+                <li onclick="detailOption3()">Detail</li>
+            </ul>
+        </div>
+    </div>
+    <div id="navbar" class="navbar">
+        <a href="#home">首页</a>
+        <a href="#about">关于</a>
+        <a href="#services">服务</a>
+        <a href="#contact">联系</a>
+    </div>
+    <div id="sidebar" class="sidebar">
+        <label>Time</label>
+        <p id="startTime"></p>
+        <p id="endTime"></p>
+<!--        <p id="nodeTime">XXXX.XX -> XXXX.XX</p>-->
+        <div class="input-field">
+            <label for="title">Title</label>
+            <input type="text" id="nodeTitle" placeholder="Enter title here">
+        </div>
+        <div class="input-field">
+            <label for="content">Content</label>
+            <textarea id="markdownInput" rows="4" placeholder="Enter content here"></textarea>
+<!--            <div id="markdown-preview" class="preview"></div>-->
+        </div>
+    </div>
+    <script type="text/javascript" src="mindMapping.js"></script>
+    <script type="text/javascript" src="menu.js"></script>
+    <script type="text/javascript" src="sidebar.js"></script>
+    <script type="text/javascript" src="markdown.js"></script>
+    <script>
+<!--        document.getElementById('markdownInput').addEventListener('input', function() {-->
+<!--            const markdownText = this.value;-->
+<!--            const htmlContent = marked.parse(markdownText);-->
+<!--            document.getElementById('markdown-preview').innerHTML = htmlContent;-->
+<!--        });-->
+    </script>
+    <script language="JavaScript">
+        var mindObject;
+        var selectNode;
+        
+        function getNode(node ,id) {
+            if (node.id == id) {
+                return node
+            } else {
+                for (let i = 0; i < node.children.length; i++) {
+                    let result = getNode(node.children[i], id);
+                    if (result) {
+                        return result;
+                    }
+                }
+            }
+            return null;
+        }
+    </script>
+    <script language="JavaScript">
+        // 实现拖拽功能
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+        
+        const navbar = document.getElementById("navbar");
+        navbar.addEventListener("mousedown", function(e) {
+            // Calculate the offset position
+            const offsetX = e.clientX - navbar.getBoundingClientRect().left;
+            const offsetY = e.clientY - navbar.getBoundingClientRect().top;
+            
+            function onMouseMove(e) {
+                // Move the element based on mouse position
+                navbar.style.left = e.clientX - offsetX + "px";
+                navbar.style.top = e.clientY - offsetY + "px";
+                navbar.style.transform = 'none'; // 禁用transform影响拖拽
+            }
+            
+            function onMouseUp() {
+                // Remove the event listeners when the mouse is released
+                document.removeEventListener("mousemove", onMouseMove);
+                document.removeEventListener("mouseup", onMouseUp);
+            }
+            
+            // Add the event listeners for mousemove and mouseup
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+        });
+    </script>
+</body>
