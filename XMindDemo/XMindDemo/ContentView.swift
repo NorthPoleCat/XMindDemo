@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentType: MindType = .canvas
+    @State var currentType: MindType = .native
     var body: some View {
         NavigationSplitView {
             List {
@@ -17,7 +17,9 @@ struct ContentView: View {
                 }
             }
         } detail: {
+//            Text("test native")
             mindView
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
     }
     
@@ -35,9 +37,10 @@ struct ContentView: View {
         case .canvas:
             WebViewWrapper(url: CommonUtils.shared.mindMapURL(),
                            node: CommonUtils.shared.getData(for: currentType))
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         case .native:
-            Text("test2")
+            ScrollView([.horizontal, .vertical]) {
+                MindMapView(node: CommonUtils.shared.getData(for: currentType))
+            }
         case .cmaker:
             Text("test3")
         }
