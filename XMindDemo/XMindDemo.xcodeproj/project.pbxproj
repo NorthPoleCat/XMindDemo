@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C6988612CC28A2A00D7F09E /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6988602CC28A2A00D7F09E /* CommonUtils.swift */; };
 		8C8BBC0C2CC0AEB0006627C0 /* XMindDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */; };
 		8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */; };
 		8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0F2CC0AEB1006627C0 /* Assets.xcassets */; };
 		8C8BBC132CC0AEB1006627C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC122CC0AEB1006627C0 /* Preview Assets.xcassets */; };
-		8C8BBC212CC14772006627C0 /* markdown.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1B2CC14771006627C0 /* markdown.js */; };
 		8C8BBC222CC14772006627C0 /* menu.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1C2CC14772006627C0 /* menu.js */; };
 		8C8BBC232CC14772006627C0 /* mindMapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1D2CC14772006627C0 /* mindMapping.js */; };
 		8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */; };
@@ -23,13 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C6988602CC28A2A00D7F09E /* CommonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		8C8BBC082CC0AEB0006627C0 /* XMindDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMindDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMindDemoApp.swift; sourceTree = "<group>"; };
 		8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8C8BBC0F2CC0AEB1006627C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C8BBC122CC0AEB1006627C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8C8BBC142CC0AEB1006627C0 /* XMindDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XMindDemo.entitlements; sourceTree = "<group>"; };
-		8C8BBC1B2CC14771006627C0 /* markdown.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = markdown.js; sourceTree = "<group>"; };
 		8C8BBC1C2CC14772006627C0 /* menu.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = menu.js; sourceTree = "<group>"; };
 		8C8BBC1D2CC14772006627C0 /* mindMapping.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mindMapping.js; sourceTree = "<group>"; };
 		8C8BBC1E2CC14772006627C0 /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
@@ -94,7 +94,6 @@
 		8C8BBC1A2CC14754006627C0 /* CanvasMindMapping */ = {
 			isa = PBXGroup;
 			children = (
-				8C8BBC1B2CC14771006627C0 /* markdown.js */,
 				8C8BBC1C2CC14772006627C0 /* menu.js */,
 				8C8BBC202CC14772006627C0 /* mindMapping.html */,
 				8C8BBC1D2CC14772006627C0 /* mindMapping.js */,
@@ -124,6 +123,7 @@
 			children = (
 				8C8BBC2F2CC1601A006627C0 /* Enum */,
 				8C8BBC2A2CC15889006627C0 /* Models */,
+				8C6988602CC28A2A00D7F09E /* CommonUtils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -203,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C8BBC132CC0AEB1006627C0 /* Preview Assets.xcassets in Resources */,
-				8C8BBC212CC14772006627C0 /* markdown.js in Resources */,
 				8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */,
 				8C8BBC222CC14772006627C0 /* menu.js in Resources */,
 				8C8BBC232CC14772006627C0 /* mindMapping.js in Resources */,
@@ -224,6 +223,7 @@
 				8C8BBC312CC16024006627C0 /* Enum.swift in Sources */,
 				8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */,
 				8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */,
+				8C6988612CC28A2A00D7F09E /* CommonUtils.swift in Sources */,
 				8C8BBC2C2CC15896006627C0 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

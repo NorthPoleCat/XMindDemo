@@ -1,8 +1,6 @@
 //let canvas = document.getElementById('canvas');
 //let ctx = canvas.getContext('2d');
 
-let progressWidth = 30;
-
 var PIXEL_RATIO = (function () {
     var ctx = document.createElement("canvas").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
@@ -71,18 +69,6 @@ var canvasW = 0;
 window.onload = function() {
     //每次加载调用
     window.webkit.messageHandlers.load.postMessage('');
-    
-    markdownInput.addEventListener('input', autoResize).addEventListener('input', () => {
-        autoResize();
-        
-        // 如果有未执行的保存操作，清除它
-        if (saveTimeout) {
-            clearTimeout(saveTimeout);
-        }
-        
-        // 在用户停止输入 1 秒后保存内容
-        saveTimeout = setTimeout(save, 1000);
-    });
 }
 
 function loadData(mind) {
@@ -94,11 +80,6 @@ function loadData(mind) {
     setLine();
 }
 
-//function draw() {
-//  ctx.canvas.width  = window.innerWidth;
-//  ctx.canvas.height = window.innerHeight;
-//}
-
 function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = true) {
 
     if (isRoot) {
@@ -108,10 +89,8 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
         canvasW = node.width;
         
         if (node.children.length > 0) {
-//            nodeY = 200 + (node.childrenHeight-node.children[0].childrenHeight*0.5-node.children[node.children.length-1].childrenHeight*0.5)*0.5;
             nodeY = 200 + Math.max(node.childrenHeight, node.height)*0.5
             if (node.childrenHeight >= node.height) {
-//                canvasH = (node.childrenHeight+node.children[0].childrenHeight*0.5+node.children[node.children.length-1].childrenHeight*0.5)+400;
                 canvasH = node.childrenHeight + 400;
             }
         } else {
@@ -123,7 +102,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
             x: 200,
             y: nodeY,
             height: node.height,
-            width: node.width + progressWidth,
+            width: node.width,
             lines: node.lines,
             lineHeight: node.lineHeight,
             outline: node.title,
@@ -159,7 +138,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
             x: parentPos.x + parentPos.width + columnPadding,
             y: nodeY,
             height: node.height,
-            width: node.width + progressWidth,
+            width: node.width,
             lines: node.lines,
             lineHeight: node.lineHeight,
             outline: node.title,
@@ -196,25 +175,21 @@ function renderNodes(positions) {
     positions.forEach(position => {
         var node = getNodeById(position.id)
         const e = new Path2D();
-        drawCircularProgress(position.x + 15, position.y + position.height * 0.5, 10, 2, node.progress);
 
         e.roundRect(position.x, position.y, position.width, position.height, radius);
         ctx.strokeStyle = 'green';
         ctx.stroke(e);
         setFontSize(18);
-//        context.font = '30px Helvetica';
         let lines = position.lines
         let lineHeight = position.lineHeight
         for (var i = 0; i < lines.length; i++) {
             //参数y标注的是文字的底部位置
-            ctx.fillText(lines[i], position.x + nodeMargin * 0.5 + progressWidth, position.y + (i+1) * lineHeight)
+            ctx.fillText(lines[i], position.x + nodeMargin * 0.5, position.y + (i+1) * lineHeight)
         }
         elementslist.push([e, node]);
-//        drawCircularProgress(position.x + 15, position.y + position.height * 0.5, 10, 2, 0.75);
     });
 
     canvas.addEventListener('click', function(event) {
-//    canvas.addEventListener('dblclick', function(event) {
         hideContextMenu()
         elementslist.forEach(element => {
             if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
@@ -243,7 +218,6 @@ function renderNodes(positions) {
 function setLine() {
     positions.forEach(pos => {
         let node  = getNodeById(pos.id);
-//        setLine(pos, 15, node.childrenHeight*0.5);
         if (node.children != null && node.children.length > 0) {
             setLineWith(pos, node, 15);
         }
@@ -379,23 +353,6 @@ function setFontSize(size) {
 
 function maxNodeHight(node) {
     return Math.max(node.height, node.childrenHeight);
-}
-
-//context, 圆心x, 圆心y, 半径, 线宽, progress
-function drawCircularProgress(x, y, radius, lineWidth, progress) {
-    // Draw the background circle
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
-    ctx.lineWidth = lineWidth;
-    ctx.strokeStyle = '#e6e6e6'; // Background circle color
-    ctx.stroke();
-
-    // Draw the progress circle
-    ctx.beginPath();
-    ctx.arc(x, y, radius, -0.5 * Math.PI, (2 * Math.PI * progress) - 0.5 * Math.PI, false);
-    ctx.lineWidth = lineWidth;
-    ctx.strokeStyle = '#00bfff'; // Progress circle color
-    ctx.stroke();
 }
 
 

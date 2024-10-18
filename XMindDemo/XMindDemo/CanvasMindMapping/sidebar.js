@@ -8,11 +8,6 @@ function switchSideBar() {
 }
 
 function refreshSideBar() {
-    const start = new Date(selectNode.startDate)
-    const end = new Date(selectNode.endDate)
-    startTime.textContent = start.toISOString().split('T')[0]
-    endTime.textContent = end.toISOString().split('T')[0]
-    nodeTitle.value = selectNode.title
     markdownInput.value = selectNode.content;
     autoResize();
 }

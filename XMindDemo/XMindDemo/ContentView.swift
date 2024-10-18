@@ -33,7 +33,9 @@ struct ContentView: View {
     private var mindView: some View {
         switch currentType {
         case .canvas:
-            Text("test")
+            WebViewWrapper(url: CommonUtils.shared.mindMapURL(),
+                           node: CommonUtils.shared.getData(for: currentType))
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         case .native:
             Text("test2")
         case .cmaker:

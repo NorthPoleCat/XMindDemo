@@ -20,4 +20,15 @@ enum MindType: CaseIterable {
             "c render"
         }
     }
+    
+    func filePath() -> String {
+        switch self {
+        case .canvas:
+            "canvas.json"
+        case .native:
+            "native.json"
+        case .cmaker:
+            "cmaker.json"
+        }
+    }
 }
