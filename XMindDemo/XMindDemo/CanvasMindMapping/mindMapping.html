@@ -146,16 +146,7 @@
             </ul>
         </div>
     </div>
-    <div id="navbar" class="navbar">
-        <a href="#home">首页</a>
-        <a href="#about">关于</a>
-        <a href="#services">服务</a>
-        <a href="#contact">联系</a>
-    </div>
     <div id="sidebar" class="sidebar">
-        <label>Time</label>
-        <p id="startTime"></p>
-        <p id="endTime"></p>
         <div class="input-field">
             <label for="title">Title</label>
             <input type="text" id="nodeTitle" placeholder="Enter title here">
@@ -168,14 +159,6 @@
     <script type="text/javascript" src="mindMapping.js"></script>
     <script type="text/javascript" src="menu.js"></script>
     <script type="text/javascript" src="sidebar.js"></script>
-    <script type="text/javascript" src="markdown.js"></script>
-    <script>
-<!--        document.getElementById('markdownInput').addEventListener('input', function() {-->
-<!--            const markdownText = this.value;-->
-<!--            const htmlContent = marked.parse(markdownText);-->
-<!--            document.getElementById('markdown-preview').innerHTML = htmlContent;-->
-<!--        });-->
-    </script>
     <script language="JavaScript">
         var mindObject;
         var selectNode;
@@ -193,35 +176,5 @@
             }
             return null;
         }
-    </script>
-    <script language="JavaScript">
-        // 实现拖拽功能
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-        
-        const navbar = document.getElementById("navbar");
-        navbar.addEventListener("mousedown", function(e) {
-            // Calculate the offset position
-            const offsetX = e.clientX - navbar.getBoundingClientRect().left;
-            const offsetY = e.clientY - navbar.getBoundingClientRect().top;
-            
-            function onMouseMove(e) {
-                // Move the element based on mouse position
-                navbar.style.left = e.clientX - offsetX + "px";
-                navbar.style.top = e.clientY - offsetY + "px";
-                navbar.style.transform = 'none'; // 禁用transform影响拖拽
-            }
-            
-            function onMouseUp() {
-                // Remove the event listeners when the mouse is released
-                document.removeEventListener("mousemove", onMouseMove);
-                document.removeEventListener("mouseup", onMouseUp);
-            }
-            
-            // Add the event listeners for mousemove and mouseup
-            document.addEventListener("mousemove", onMouseMove);
-            document.addEventListener("mouseup", onMouseUp);
-        });
     </script>
 </body>

@@ -64,7 +64,21 @@ extension Node {
         var child1 = Node()
         child1.title = "Child1"
         
-        root.children = [child1]
+        var child11 = Node()
+        child11.title = "processes in a system share the CPU and main memory with other processes. However, sharing the main memory poses some special challenges."
+        
+        var child12 = Node()
+        child12.title = "Error Handling"
+        
+        child1.children = [child11, child12]
+        
+        var child2 = Node()
+        child2.title = "Let us define the operation +uw for arguments x and y, where 0 ≤ x, y < 2w, as the result of truncating the integer sum x + y to be w bits long and then viewing the result as an unsigned number. This can be characterized as a form of modular arithmetic, computing the sum modulo 2w by simply discarding any bits with weight greater than 2w−1 in the bit-level representation of x + y."
+        
+        var child3 = Node()
+        child3.title = "Child3"
+        
+        root.children = [child1, child2, child3]
         
         return root
     }

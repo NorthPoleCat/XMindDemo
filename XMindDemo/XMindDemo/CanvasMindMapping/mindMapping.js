@@ -61,6 +61,7 @@ let saveTimeout;
 //node positions
 var positions = [];
 
+//指向当前render node的maxY + gap, 即下一个同级节点（如果存在）的minY
 var currentChildPos = 0;
 
 var canvasH = 0;
@@ -119,7 +120,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
         });
     } else {
 
-        let nodeY = 0;
+        let nodeY = 0;//指向当前渲染节点的minY
         if (currentChildPos == 0) {
             let parentPosCenterY = parentPos.y + parentPos.height*0.5;
             if (parentNode.children.length > 1) {
@@ -129,9 +130,18 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
                 nodeY = parentPosCenterY - node.height*0.5;
             }
         } else {
-            nodeY = currentChildPos + maxNodeHight(node)*0.5;
+            if (node.childrenHeight > node.height) {
+                nodeY = currentChildPos + node.childrenHeight*0.5 - node.height*0.5;
+            } else {
+                nodeY = currentChildPos;
+            }
         }
-        currentChildPos = nodeY + maxNodeHight(node)*0.5 + heightGap;
+        
+        if (node.childrenHeight > node.height) {
+            currentChildPos = nodeY + node.height*0.5 + node.childrenHeight*0.5 + heightGap;
+        } else {
+            currentChildPos = nodeY + node.height + heightGap;
+        }
 
         let pos = {
             id: node.id,
@@ -151,7 +161,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
         
         canvasW = Math.max(canvasW, pos.x + node.width);
 
-        if (currentChildPos >= (parentPos.y + Math.max(parentNode.height, parentNode.childrenHeight)*0.5)) {
+        if (currentChildPos >= (parentPos.y + parentPos.height*0.5 + Math.max(parentNode.height, parentNode.childrenHeight)*0.5)) {
             parentNode.children.forEach((key, value) => {
                 currentChildPos = 0;
                 let subParentPos = getPosById(key.id);
@@ -354,7 +364,6 @@ function setFontSize(size) {
 function maxNodeHight(node) {
     return Math.max(node.height, node.childrenHeight);
 }
-
 
 
 
