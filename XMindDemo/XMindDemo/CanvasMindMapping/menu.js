@@ -24,11 +24,14 @@ function delOption2() {
 function detailOption3() {
     hideContextMenu();
     let id = document.getElementById('contextMenu').getAttribute('data')
-    if (selectNode == null || id == selectNode.id) {
+    if (selectNode == null) {
         selectNode = getNode(mindObject.root, id);
+        switchSideBar();
+    } else if (id == selectNode.id) {
         switchSideBar();
     } else {
         selectNode = getNode(mindObject.root, id);
+        sidebar.style.display = 'block';
         refreshSideBar();
     }
 }

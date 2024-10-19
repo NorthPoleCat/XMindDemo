@@ -33,6 +33,12 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+        
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
 
         .content {
             margin-right: 250px; /* Adjust this width to match the sidebar width */
@@ -155,6 +161,8 @@
             <label for="content">Content</label>
             <textarea id="markdownInput" rows="4" placeholder="Enter content here"></textarea>
         </div>
+        <button style="background-color: blue; color: white; border-radius: 5px;" onclick="save()">Save</button>
+        <button style="background-color: white; color: black; border-radius: 5px;" onclick="cancel()">Cancel</button>
     </div>
     <script type="text/javascript" src="mindMapping.js"></script>
     <script type="text/javascript" src="menu.js"></script>

@@ -8,7 +8,8 @@ function switchSideBar() {
 }
 
 function refreshSideBar() {
-    markdownInput.value = selectNode.content;
+    nodeTitle.value = selectNode.title;
+    markdownInput.value = selectNode.title;
     autoResize();
 }
 
@@ -29,5 +30,9 @@ function autoResize() {
 }
 
 function save() {
-    alert('test')
+    
+}
+
+function cancel() {
+    sidebar.style.display = 'none';
 }
