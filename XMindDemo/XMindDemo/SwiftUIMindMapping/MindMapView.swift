@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MindMapView: View {
-    @State private var offset: CGSize = .zero    // 当前的位移
+    @State var offset: CGSize = .zero    // 当前的位移
     @State private var lastOffset: CGSize = .zero // 拖动结束后的位移
     var node: Node
         
@@ -21,7 +21,13 @@ struct MindMapView: View {
                 .cornerRadius(10)
                 .foregroundColor(.white)
                 .offset(offset)
-                .gesture(dragGesture)
+//                .gesture(
+//                    DragGesture()
+//                        .onChanged { value in
+//                            self.offset = value.translation
+//                        }
+//                )
+//                .gesture(dragGesture)
                         
             let startPoint = CGPoint(x: offset.width + 50, y: offset.height + 20)  // 父节点的中心点
             
@@ -31,8 +37,7 @@ struct MindMapView: View {
 
                 let endPoint = CGPoint(x: 150 + offset.width, y: childOffsetY + offset.height + 20) // 子节点的中心点
                 
-                MindMapView(node: node.children[index])
-                    .offset(x: 150, y: childOffsetY)
+                MindMapView(offset: CGSize(width: offset.width + 150, height: childOffsetY + offset.height), node: node.children[index])
                 
                 LineView(start: startPoint, end: endPoint)
                     .zIndex(-1)
