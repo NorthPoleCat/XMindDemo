@@ -30,7 +30,7 @@ function autoResize() {
 }
 
 function save() {
-    
+    window.webkit.messageHandlers.editNode.postMessage(id)
 }
 
 function cancel() {

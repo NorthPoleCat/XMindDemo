@@ -84,4 +84,8 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo) async {
         print(message)
     }
+    
+    func reloadMindMap() {
+        
+    }
 }
