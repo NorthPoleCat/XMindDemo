@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentType: MindType = .canvas
+    @State var currentType: MindType = .native
     var body: some View {
         NavigationSplitView {
             List {

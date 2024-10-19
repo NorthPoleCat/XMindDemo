@@ -22,14 +22,21 @@ struct MindMapView: View {
                 .foregroundColor(.white)
                 .offset(offset)
                 .gesture(dragGesture)
+                        
+            let startPoint = CGPoint(x: offset.width + 50, y: offset.height + 20)  // 父节点的中心点
             
-//            LineView(start: CGPoint(x: 50, y: 20), end: CGPoint(x: 150, y: 150))
-        }
-            
-        ForEach(node.children.indices, id: \.self) { index in
-            MindMapView(node: node.children[index])
-                .padding(.leading, 350)
-                .padding(.top, calculateOffset(parentNode: node, index: index))
+            ForEach(node.children.indices, id: \.self) { index in
+                
+                let childOffsetY = calculateOffset(parentNode: node, index: index)
+
+                let endPoint = CGPoint(x: 150 + offset.width, y: childOffsetY + offset.height + 20) // 子节点的中心点
+                
+                MindMapView(node: node.children[index])
+                    .offset(x: 150, y: childOffsetY)
+                
+                LineView(start: startPoint, end: endPoint)
+                    .zIndex(-1)
+            }
         }
     }
     
@@ -46,9 +53,9 @@ struct MindMapView: View {
     
     private func calculateOffset(parentNode: Node, index: Int) -> CGFloat {
         let offsetCount = CGFloat(parentNode.children.count - 1)
-        let offsets: [CGFloat] = Array(stride(from: 0, through: offsetCount * 55, by: 55))
-        let childrenTotalHeight = offsets.last! - offsets.first! + 40 //40 for static node height
-        return offsets[index] - childrenTotalHeight * 0.5 - 40
+        let offsets: [CGFloat] = Array(stride(from: 0, through: offsetCount * 70, by: 70))
+        let childrenTotalHeight = offsets.last! - offsets.first!
+        return offsets[index] - childrenTotalHeight * 0.5
     }
 }
 
