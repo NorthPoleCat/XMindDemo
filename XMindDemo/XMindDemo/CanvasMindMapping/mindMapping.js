@@ -64,6 +64,8 @@ var positions = [];
 //指向当前render node的maxY + gap, 即下一个同级节点（如果存在）的minY
 var currentChildPos = 0;
 
+var parentChildrenHeightWithinLines = 0;
+
 var canvasH = 0;
 var canvasW = 0;
 
@@ -124,7 +126,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
         if (currentChildPos == 0) {
             let parentPosCenterY = parentPos.y + parentPos.height*0.5;
             if (parentNode.children.length > 1) {
-                let parentChildrenHeightWithinLines = parentNode.childrenHeight-maxNodeHight(parentNode.children[0])*0.5-maxNodeHight(parentNode.children[parentNode.children.length-1])*0.5
+                parentChildrenHeightWithinLines = parentNode.childrenHeight-maxNodeHight(parentNode.children[0])*0.5-maxNodeHight(parentNode.children[parentNode.children.length-1])*0.5
                 nodeY = parentPosCenterY - parentChildrenHeightWithinLines*0.5 - node.height*0.5;
             } else {
                 nodeY = parentPosCenterY - node.height*0.5;
@@ -161,9 +163,10 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
         
         canvasW = Math.max(canvasW, pos.x + node.width);
 
-        if (currentChildPos >= (parentPos.y + parentPos.height*0.5 + Math.max(parentNode.height, parentNode.childrenHeight)*0.5)) {
+        if (currentChildPos >= (parentPos.y + parentPos.height*0.5 + parentChildrenHeightWithinLines*0.5)) {
             parentNode.children.forEach((key, value) => {
                 currentChildPos = 0;
+                parentChildrenHeightWithinLines = 0;
                 let subParentPos = getPosById(key.id);
                 key.children.forEach((subKey, value) => {
                     getNodesPosition(subKey, key, subParentPos, false);
