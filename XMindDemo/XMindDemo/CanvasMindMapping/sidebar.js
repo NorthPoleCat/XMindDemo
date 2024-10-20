@@ -9,7 +9,7 @@ function switchSideBar() {
 
 function refreshSideBar() {
     nodeTitle.value = selectNode.title;
-    markdownInput.value = selectNode.title;
+    markdownInput.value = selectNode.content;
     autoResize();
 }
 
@@ -30,7 +30,16 @@ function autoResize() {
 }
 
 function save() {
-    window.webkit.messageHandlers.editNode.postMessage(id)
+    let title = nodeTitle.value;
+    let content = markdownInput.value;
+    let id = selectNode.id;
+    var dict = {
+        "id": id,
+        "title": title,
+        "content": content
+    };
+    window.webkit.messageHandlers.editNode.postMessage(dict);
+    sidebar.style.display = 'none';
 }
 
 function cancel() {

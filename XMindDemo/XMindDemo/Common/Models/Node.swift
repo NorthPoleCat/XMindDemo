@@ -24,6 +24,32 @@ struct Node: Codable {
     private init() {
         id = UUID().uuidString
     }
+    
+    init(id: String, title: String, content: String) {
+        self.id = id
+        self.title = title
+        self.content = content
+    }
+    
+    mutating func copy(from node: Node) {
+        title = node.title
+        content = node.content
+    }
+    
+    // return value: true for replace succeed
+    mutating func replace(with node: Node) -> Bool {
+        if (id == node.id) {
+            copy(from: node)
+            return true
+        } else {
+            for i in 0..<children.count {
+                if children[i].replace(with: node) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
 
 extension Node {
