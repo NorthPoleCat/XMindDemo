@@ -31,12 +31,12 @@ struct AddNodeWindow: View {
             
             HStack(alignment: .center) {
                 Button {
-                    var addNode = Node.defaultNode
+                    var addNode = Node.none
                     addNode.title = title
                     addNode.content = content
                     
                     var root = CommonUtils.shared.getData(for: .canvas)
-                    _ = root.add(parentId: parentId, node: addNode)
+                    root.add(parentId: parentId, node: addNode)
                     root.save(.canvas)
                     dismiss()
                 } label: {

@@ -9,6 +9,11 @@ import Foundation
 
 struct Node: Codable {
     static var defaultNode = getDefaultNode()
+    static var none: Node {
+        get {
+            Node()
+        }
+    }
     
     var id: String
     var height: Double = 0.0
@@ -51,18 +56,15 @@ struct Node: Codable {
         return false
     }
     
-    mutating func add(parentId: String, node: Node) -> Bool {
+    mutating func add(parentId: String, node: Node) {
         if (id == parentId) {
             children.append(node)
-            return true
+            return
         } else {
             for i in 0..<children.count {
-                if children[i].add(parentId: parentId, node: node) {
-                    return true
-                }
+                children[i].add(parentId: parentId, node: node)
             }
         }
-        return false
     }
 }
 

@@ -175,7 +175,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
         }
     }
     
-    let canvasSize = Math.max(canvasH, canvasW + 400);
+    let canvasSize = Math.max(canvasH + 400, canvasW + 400);
     resetHiDPICanvas(canvasSize, canvasSize);
 
     return positions;
@@ -356,7 +356,7 @@ function getPosById(identity) {
     })[0];
 }
 
-// 函数：仅设置字体大小，不改变字体族
+// 仅设置字体大小，不改变字体族
 function setFontSize(size) {
     const currentFont = ctx.font;
     const fontSize = size + 'px';
