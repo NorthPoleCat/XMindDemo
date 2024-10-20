@@ -5,7 +5,7 @@
 //  Created by xun liu on 2024/10/17.
 //
 
-import Foundation
+import SwiftUI
 
 enum MindType: CaseIterable {
     case canvas, native, cmaker
@@ -30,5 +30,18 @@ enum MindType: CaseIterable {
         case .cmaker:
             "cmaker.json"
         }
+    }
+}
+
+enum OpenWindows: String, CaseIterable {
+    case AddNode = "AddNode"
+    case DelNode = "DelNode"
+    
+    func open(openAction: OpenWindowAction, param: String? = nil) {
+        guard let pa = param else {
+            openAction(id: self.rawValue)
+            return
+        }
+        openAction(id: self.rawValue, value: pa)
     }
 }

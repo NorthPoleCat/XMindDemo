@@ -43,6 +43,7 @@ struct WebViewWrapper: NSViewRepresentable {
 class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     var webView: WKWebView = WKWebView()
     var node: Node?
+    @Environment(\.openWindow) private var openWindow
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
@@ -73,9 +74,11 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
                 reloadMindMap()
             }
         } else if message.name == "addNode" {
-
+            guard let parentId: String = message.body as? String else { return }
+            OpenWindows.AddNode.open(openAction: openWindow, param: parentId)
         } else if message.name == "delNode" {
-            
+            guard let delId: String = message.body as? String else { return }
+            OpenWindows.DelNode.open(openAction: openWindow, param: delId)
         }
     }
     
