@@ -11,9 +11,10 @@ import WebKit
 struct WebViewWrapper: NSViewRepresentable {
     let url: URL?
     let node: Node
+    @Environment(\.openWindow) private var openWindow
         
     func makeCoordinator() -> MessageHandler {
-        MessageHandler()
+        MessageHandler(openWindow: openWindow)
     }
     
     func makeNSView(context: Context) -> WKWebView {
@@ -43,7 +44,11 @@ struct WebViewWrapper: NSViewRepresentable {
 class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     var webView: WKWebView = WKWebView()
     var node: Node?
-    @Environment(\.openWindow) private var openWindow
+    private var openWindow: OpenWindowAction
+
+    init(openWindow: OpenWindowAction) {
+        self.openWindow = openWindow
+    }
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         

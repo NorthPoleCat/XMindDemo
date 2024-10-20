@@ -13,5 +13,21 @@ struct XMindDemoApp: App {
         WindowGroup {
             ContentView()
         }
+        
+        WindowGroup(id: "AddNode", for: String.self) { $id in
+            AddNodeWindow(parentId: id ?? "")
+                .frame(width: 600, height: 400)
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowToolbarStyle(.unified)
+        .windowResizability(.contentSize)
+        
+        WindowGroup(id: "DelNode", for: String.self) { $id in
+            AddNodeWindow(parentId: id ?? "")
+                .frame(width: 600, height: 400)
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowToolbarStyle(.unified)
+        .windowResizability(.contentSize)
     }
 }

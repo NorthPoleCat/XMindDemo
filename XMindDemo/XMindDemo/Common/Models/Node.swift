@@ -50,6 +50,20 @@ struct Node: Codable {
         }
         return false
     }
+    
+    mutating func add(parentId: String, node: Node) -> Bool {
+        if (id == parentId) {
+            children.append(node)
+            return true
+        } else {
+            for i in 0..<children.count {
+                if children[i].add(parentId: parentId, node: node) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
 
 extension Node {

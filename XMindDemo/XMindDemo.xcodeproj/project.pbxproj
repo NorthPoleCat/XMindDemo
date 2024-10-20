@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C6538A12CC5240900CEB260 /* AddNodeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */; };
 		8C6988612CC28A2A00D7F09E /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6988602CC28A2A00D7F09E /* CommonUtils.swift */; };
 		8C8BBC0C2CC0AEB0006627C0 /* XMindDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */; };
 		8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNodeWindow.swift; sourceTree = "<group>"; };
 		8C6988602CC28A2A00D7F09E /* CommonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		8C8BBC082CC0AEB0006627C0 /* XMindDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMindDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMindDemoApp.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C65389F2CC523F600CEB260 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8C8BBBFF2CC0AEB0006627C0 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +104,7 @@
 		8C8BBC1A2CC14754006627C0 /* CanvasMindMapping */ = {
 			isa = PBXGroup;
 			children = (
+				8C65389F2CC523F600CEB260 /* Views */,
 				8C8BBC1C2CC14772006627C0 /* menu.js */,
 				8C8BBC202CC14772006627C0 /* mindMapping.html */,
 				8C8BBC1D2CC14772006627C0 /* mindMapping.js */,
@@ -223,6 +234,7 @@
 				8C8BBC312CC16024006627C0 /* Enum.swift in Sources */,
 				8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */,
 				8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */,
+				8C6538A12CC5240900CEB260 /* AddNodeWindow.swift in Sources */,
 				8C6988612CC28A2A00D7F09E /* CommonUtils.swift in Sources */,
 				8C8BBC2C2CC15896006627C0 /* Node.swift in Sources */,
 			);
