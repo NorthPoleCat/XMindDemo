@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Node: Codable {
+class Node: Codable, ObservableObject {
     static var defaultNode = getDefaultNode()
     static var none: Node {
         get {
@@ -36,13 +36,13 @@ struct Node: Codable {
         self.content = content
     }
     
-    mutating func copy(from node: Node) {
+    func copy(from node: Node) {
         title = node.title
         content = node.content
     }
     
     // return value: true for replace succeed
-    mutating func replace(with node: Node) -> Bool {
+    func replace(with node: Node) -> Bool {
         if (id == node.id) {
             copy(from: node)
             return true
@@ -56,7 +56,7 @@ struct Node: Codable {
         return false
     }
     
-    mutating func add(parentId: String, node: Node) {
+    func add(parentId: String, node: Node) {
         if (id == parentId) {
             children.append(node)
             return

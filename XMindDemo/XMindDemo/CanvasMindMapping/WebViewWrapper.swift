@@ -9,9 +9,8 @@ import SwiftUI
 import WebKit
 
 struct WebViewWrapper: NSViewRepresentable {
-    let url: URL?
-    let node: Node
     @Environment(\.openWindow) private var openWindow
+    @EnvironmentObject private var refresh: RefreshTrigger
         
     func makeCoordinator() -> MessageHandler {
         MessageHandler(openWindow: openWindow)
@@ -29,21 +28,20 @@ struct WebViewWrapper: NSViewRepresentable {
         let webView =  WKWebView(frame: .zero, configuration: configuration)
         webView.isInspectable = true
         context.coordinator.webView = webView
-        context.coordinator.node = node
         return webView
     }
     
     func updateNSView(_ nsView: WKWebView, context: Context) {
-        guard let url = url else {
+        guard let url = CommonUtils.shared.mindMapURL() else {
             return
         }
         nsView.loadFileURL(url, allowingReadAccessTo: url)
+        context.coordinator.reloadMindMap()
     }
 }
 
 class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     var webView: WKWebView = WKWebView()
-    var node: Node?
     private var openWindow: OpenWindowAction
 
     init(openWindow: OpenWindowAction) {
@@ -52,7 +50,7 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
-        guard var n = node else { return }
+        let n = CommonUtils.shared.getData(for: .canvas)
         
         if message.name == "load" {
             let jsonString = n.rootJson()
@@ -92,8 +90,7 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     }
     
     func reloadMindMap() {
-        node = CommonUtils.shared.getData(for: .canvas)
-        guard let n = node else { return }
+        let n = CommonUtils.shared.getData(for: .canvas)
         let jsonString = n.rootJson()
         let escapedString = jsonString.replacingOccurrences(of: "\\", with: "\\\\")
                     .replacingOccurrences(of: "\"", with: "\\\"")

@@ -295,9 +295,9 @@ function calculateNode(node) {
     
     var chr = content.split("");
     var temp = "";
-    
 
     for (var a = 0; a < chr.length; a++) {
+        temp += chr[a];
         let metrics = ctx.measureText(temp)
         fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
         lineHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
@@ -306,7 +306,6 @@ function calculateNode(node) {
             nWidth = metrics.width > nWidth ? metrics.width : nWidth;
             temp = "";
         }
-        temp += chr[a];
     }
     row.push(temp);
 

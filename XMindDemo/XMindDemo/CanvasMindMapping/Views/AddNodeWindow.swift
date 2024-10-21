@@ -38,6 +38,7 @@ struct AddNodeWindow: View {
                     var root = CommonUtils.shared.getData(for: .canvas)
                     root.add(parentId: parentId, node: addNode)
                     root.save(.canvas)
+                    RefreshTrigger.shared.refresh()
                     dismiss()
                 } label: {
                     Title("Save")

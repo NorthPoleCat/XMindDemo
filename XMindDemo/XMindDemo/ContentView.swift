@@ -35,11 +35,10 @@ struct ContentView: View {
     private var mindView: some View {
         switch currentType {
         case .canvas:
-            WebViewWrapper(url: CommonUtils.shared.mindMapURL(),
-                           node: CommonUtils.shared.getData(for: currentType))
+            WebViewWrapper()
         case .native:
             ScrollView([.horizontal, .vertical]) {
-                MindMapView(node: CommonUtils.shared.getData(for: currentType))
+                MindMapView(node: CommonUtils.shared.getData(for: .native))
             }
         case .cmaker:
             Text("test3")

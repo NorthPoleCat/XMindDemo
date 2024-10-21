@@ -12,6 +12,7 @@ struct XMindDemoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(RefreshTrigger.shared)
         }
         
         WindowGroup(id: "AddNode", for: String.self) { $id in
