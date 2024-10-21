@@ -340,7 +340,7 @@ function childrenHeight(node) {
         node.width = metrics.width;
         node.lines = metrics.lines;
         node.lineHeight = metrics.lineHeight;
-        return node.childrenHeight;
+        return Math.max(node.childrenHeight, node.height);
     }
 }
 
