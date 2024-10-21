@@ -206,7 +206,7 @@ function renderNodes(positions) {
         hideContextMenu()
         elementslist.forEach(element => {
             if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-                alert('node click placeholder')
+                alert('node click placeholder：\n更过功能请右键单击节点')
             }
         })
     });

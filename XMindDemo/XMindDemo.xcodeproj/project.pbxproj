@@ -23,6 +23,7 @@
 		8C8BBC2C2CC15896006627C0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC2B2CC15896006627C0 /* Node.swift */; };
 		8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */; };
 		8C8BBC312CC16024006627C0 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC302CC16024006627C0 /* Enum.swift */; };
+		8CDACBC82CC68FC7007C700F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDACBC72CC68FC7007C700F /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		8C8BBC2B2CC15896006627C0 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindMapView.swift; sourceTree = "<group>"; };
 		8C8BBC302CC16024006627C0 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		8CDACBC72CC68FC7007C700F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */,
 				8C86D2802CC65CD8009EAEB6 /* DelNodeWindow.swift */,
+				8CDACBC72CC68FC7007C700F /* AlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */,
 				8C8BBC0C2CC0AEB0006627C0 /* XMindDemoApp.swift in Sources */,
 				8C8BBC312CC16024006627C0 /* Enum.swift in Sources */,
+				8CDACBC82CC68FC7007C700F /* AlertView.swift in Sources */,
 				8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */,
 				8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */,
 				8C86D2812CC65CD8009EAEB6 /* DelNodeWindow.swift in Sources */,

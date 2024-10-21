@@ -20,7 +20,6 @@ struct WebViewWrapper: NSViewRepresentable {
         let configuration = WKWebViewConfiguration()
         configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         configuration.userContentController.add(context.coordinator, name: "load")
-        configuration.userContentController.add(context.coordinator, name: "nodeClick")
         configuration.userContentController.add(context.coordinator, name: "editNode")
         configuration.userContentController.add(context.coordinator, name: "addNode")
         configuration.userContentController.add(context.coordinator, name: "delNode")
@@ -64,8 +63,6 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
             let JSResult = String(format: "loadData('%@')" , escapedString)
             webView.uiDelegate = self
             webView.evaluateJavaScript(JSResult)
-        } else if message.name == "nodeClick" {
-            
         } else if message.name == "editNode" {
             guard let dict: Dictionary = message.body as? [String: String],
                   let id = dict["id"] else {
@@ -90,7 +87,9 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     }
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo) async {
-        print(message)
+        DispatchQueue.main.async {
+            OpenWindows.Alert.open(openAction: self.openWindow, param: message)
+        }
     }
     
     func reloadMindMap() {

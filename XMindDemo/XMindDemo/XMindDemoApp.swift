@@ -30,5 +30,13 @@ struct XMindDemoApp: App {
         .windowStyle(HiddenTitleBarWindowStyle())
         .windowToolbarStyle(.unified)
         .windowResizability(.contentSize)
+        
+        WindowGroup(id: "Alert", for: String.self) { $msg in
+            AlertView(message: msg ?? "")
+                .frame(width: 200, height: 100)
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowToolbarStyle(.unified)
+        .windowResizability(.contentSize)
     }
 }

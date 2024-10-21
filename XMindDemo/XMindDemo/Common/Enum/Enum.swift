@@ -36,6 +36,7 @@ enum MindType: CaseIterable {
 enum OpenWindows: String, CaseIterable {
     case AddNode = "AddNode"
     case DelNode = "DelNode"
+    case Alert = "Alert"
     
     func open(openAction: OpenWindowAction, param: String? = nil) {
         guard let pa = param else {
