@@ -12,9 +12,12 @@ struct DelNodeWindow: View {
     @Environment(\.dismiss) private var dismiss
     
     private var delId: String
+    private var parentId: String
     
-    init(delId: String) {
-        self.delId = delId
+    init(_ dictString: String) {
+        let params = dictString.split(separator: ":").map { String($0) }
+        self.delId = params[0]
+        self.parentId = params[1]
     }
     
     var body: some View {
@@ -29,9 +32,9 @@ struct DelNodeWindow: View {
             
             Button {
                 let root = CommonUtils.shared.getData(for: .canvas)
-                //这里的设计不好，更好的方式是能同时获取del 和 parent，但是这里暂时先如此实现
-                let del = root.getNode(by: [delId])
-                root.del(id: delId)
+                guard let parent = root.getNode(by: parentId) else { return }
+                root.del(id: delId, parent: parent)
+                root.save(.canvas)
                 RefreshTrigger.shared.refresh()
                 dismiss()
             } label: {
@@ -40,7 +43,9 @@ struct DelNodeWindow: View {
             
             Button {
                 let root = CommonUtils.shared.getData(for: .canvas)
-                root.del(id: delId, fullDel: false)
+                guard let parent = root.getNode(by: parentId) else { return }
+                root.del(id: delId, parent: parent, fullDel: false)
+                root.save(.canvas)
                 RefreshTrigger.shared.refresh()
                 dismiss()
             } label: {

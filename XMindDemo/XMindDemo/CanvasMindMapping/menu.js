@@ -20,7 +20,11 @@ function delOption2() {
     hideContextMenu();
     let id = contextMenu.getAttribute('data')
     let parent = contextMenu.getAttribute('parent')
-    window.webkit.messageHandlers.delNode.postMessage(id)
+    var dict = {
+        "id": id,
+        "parent": parent
+    };
+    window.webkit.messageHandlers.delNode.postMessage(dict)
 }
 
 function detailOption3() {

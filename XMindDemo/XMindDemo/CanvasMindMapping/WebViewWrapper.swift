@@ -80,8 +80,12 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
             guard let parentId: String = message.body as? String else { return }
             OpenWindows.AddNode.open(openAction: openWindow, param: parentId)
         } else if message.name == "delNode" {
-            guard let delId: String = message.body as? String else { return }
-            OpenWindows.DelNode.open(openAction: openWindow, param: delId)
+            guard let dict: Dictionary = message.body as? [String: String],
+                    let id = dict["id"],
+                    let parent = dict["parent"] else {
+                return
+            }
+            OpenWindows.DelNode.open(openAction: openWindow, param: id + ":" + parent)
         }
     }
     

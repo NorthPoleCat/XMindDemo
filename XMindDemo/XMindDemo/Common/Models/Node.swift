@@ -41,7 +41,7 @@ class Node: Codable {
         content = node.content
     }
     
-    func getNode(by id: [String]) -> [Node] {
+    func getNodes(by id: [String]) -> [Node] {
         var stack: [Node] = [self]
         var result: [Node] = []
         
@@ -56,6 +56,17 @@ class Node: Codable {
             }
         }
         return result
+    }
+    
+    func getNode(by id: String) -> Node? {
+        if (self.id == id) {
+            return self
+        } else {
+            for child in children {
+                return child.getNode(by: id)
+            }
+        }
+        return nil
     }
     
     // return value: true for replace succeed
@@ -85,21 +96,23 @@ class Node: Codable {
         }
     }
     
-    func del(id: String, fullDel: Bool = true) {
+    func del(id: String, parent: Node, fullDel: Bool = true) {
         if self.id == id {
             if isRoot() {
                 //当前逻辑不支持删除root节点
                 return
             }
             
-            if fullDel {
-                
-            } else {
-                
+            if !fullDel {
+                parent.children.append(contentsOf: children)
             }
+            
+            parent.children = parent.children.filter { $0.id != id }
+            self.parent = ""
+            
         } else {
             for child in children {
-                child.del(id: id, fullDel: fullDel)
+                child.del(id: id, parent: parent, fullDel: fullDel)
             }
         }
     }
