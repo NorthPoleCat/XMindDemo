@@ -3,6 +3,7 @@ function showContextMenu(x, y, element) {
     contextMenu.style.top = `${y}px`;
     contextMenu.style.display = 'block';
     contextMenu.setAttribute('data', element.id)
+    contextMenu.setAttribute('parent', element.parent)
 }
 
 function hideContextMenu() {
@@ -11,19 +12,20 @@ function hideContextMenu() {
 
 function addOption1() {
     hideContextMenu()
-    let id = document.getElementById('contextMenu').getAttribute('data')
+    let id = contextMenu.getAttribute('data')
     window.webkit.messageHandlers.addNode.postMessage(id)
 }
 
 function delOption2() {
     hideContextMenu();
-    let id = document.getElementById('contextMenu').getAttribute('data')
+    let id = contextMenu.getAttribute('data')
+    let parent = contextMenu.getAttribute('parent')
     window.webkit.messageHandlers.delNode.postMessage(id)
 }
 
 function detailOption3() {
     hideContextMenu();
-    let id = document.getElementById('contextMenu').getAttribute('data')
+    let id = contextMenu.getAttribute('data')
     if (selectNode == null) {
         selectNode = getNode(mindObject.root, id);
         switchSideBar();

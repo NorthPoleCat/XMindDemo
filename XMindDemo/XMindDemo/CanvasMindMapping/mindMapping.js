@@ -206,14 +206,7 @@ function renderNodes(positions) {
         hideContextMenu()
         elementslist.forEach(element => {
             if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-//                showContextMenu(event.clientX, event.clientY, element[1]);
-//                var param = {
-//                    id: element[1].id,
-//                    targetId: element[1].targetId,
-//                    outline: element[1].title,
-//                    detail: element[1].content,
-//                }
-//                window.webkit.messageHandlers.nodeClick.postMessage(param);
+                alert('node click placeholder')
             }
         })
     });

@@ -31,11 +31,11 @@ struct AddNodeWindow: View {
             
             HStack(alignment: .center) {
                 Button {
-                    var addNode = Node.none
+                    let addNode = Node.none
                     addNode.title = title
                     addNode.content = content
                     
-                    var root = CommonUtils.shared.getData(for: .canvas)
+                    let root = CommonUtils.shared.getData(for: .canvas)
                     root.add(parentId: parentId, node: addNode)
                     root.save(.canvas)
                     RefreshTrigger.shared.refresh()

@@ -10,6 +10,7 @@
 		8C6538A12CC5240900CEB260 /* AddNodeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */; };
 		8C6988612CC28A2A00D7F09E /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6988602CC28A2A00D7F09E /* CommonUtils.swift */; };
 		8C86D27F2CC64E80009EAEB6 /* RefreshTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86D27E2CC64E80009EAEB6 /* RefreshTrigger.swift */; };
+		8C86D2812CC65CD8009EAEB6 /* DelNodeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C86D2802CC65CD8009EAEB6 /* DelNodeWindow.swift */; };
 		8C8BBC0C2CC0AEB0006627C0 /* XMindDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */; };
 		8C8BBC0E2CC0AEB0006627C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */; };
 		8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBC0F2CC0AEB1006627C0 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNodeWindow.swift; sourceTree = "<group>"; };
 		8C6988602CC28A2A00D7F09E /* CommonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		8C86D27E2CC64E80009EAEB6 /* RefreshTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTrigger.swift; sourceTree = "<group>"; };
+		8C86D2802CC65CD8009EAEB6 /* DelNodeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelNodeWindow.swift; sourceTree = "<group>"; };
 		8C8BBC082CC0AEB0006627C0 /* XMindDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMindDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C8BBC0B2CC0AEB0006627C0 /* XMindDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMindDemoApp.swift; sourceTree = "<group>"; };
 		8C8BBC0D2CC0AEB0006627C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				8C6538A02CC5240900CEB260 /* AddNodeWindow.swift */,
+				8C86D2802CC65CD8009EAEB6 /* DelNodeWindow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				8C8BBC312CC16024006627C0 /* Enum.swift in Sources */,
 				8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */,
 				8C8BBC242CC14772006627C0 /* WebViewWrapper.swift in Sources */,
+				8C86D2812CC65CD8009EAEB6 /* DelNodeWindow.swift in Sources */,
 				8C6538A12CC5240900CEB260 /* AddNodeWindow.swift in Sources */,
 				8C6988612CC28A2A00D7F09E /* CommonUtils.swift in Sources */,
 				8C86D27F2CC64E80009EAEB6 /* RefreshTrigger.swift in Sources */,

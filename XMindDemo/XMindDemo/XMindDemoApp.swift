@@ -24,8 +24,8 @@ struct XMindDemoApp: App {
         .windowResizability(.contentSize)
         
         WindowGroup(id: "DelNode", for: String.self) { $id in
-            AddNodeWindow(parentId: id ?? "")
-                .frame(width: 600, height: 400)
+            DelNodeWindow(delId: id ?? "")
+                .frame(width: 400, height: 260)
         }
         .windowStyle(HiddenTitleBarWindowStyle())
         .windowToolbarStyle(.unified)

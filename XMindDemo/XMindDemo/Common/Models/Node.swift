@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Node: Codable, ObservableObject {
+class Node: Codable {
     static var defaultNode = getDefaultNode()
     static var none: Node {
         get {
@@ -41,14 +41,31 @@ class Node: Codable, ObservableObject {
         content = node.content
     }
     
+    func getNode(by id: [String]) -> [Node] {
+        var stack: [Node] = [self]
+        var result: [Node] = []
+        
+        while !stack.isEmpty && result.count < id.count {
+            let currentNode = stack.removeLast()
+            if id.contains(currentNode.id) {
+                result.append(currentNode)
+            }
+
+            for child in currentNode.children {
+                stack.append(child)
+            }
+        }
+        return result
+    }
+    
     // return value: true for replace succeed
     func replace(with node: Node) -> Bool {
         if (id == node.id) {
             copy(from: node)
             return true
         } else {
-            for i in 0..<children.count {
-                if children[i].replace(with: node) {
+            for child in children {
+                if child.replace(with: node) {
                     return true
                 }
             }
@@ -58,13 +75,37 @@ class Node: Codable, ObservableObject {
     
     func add(parentId: String, node: Node) {
         if (id == parentId) {
+            node.parent = id
             children.append(node)
             return
         } else {
-            for i in 0..<children.count {
-                children[i].add(parentId: parentId, node: node)
+            for child in children {
+                child.add(parentId: parentId, node: node)
             }
         }
+    }
+    
+    func del(id: String, fullDel: Bool = true) {
+        if self.id == id {
+            if isRoot() {
+                //当前逻辑不支持删除root节点
+                return
+            }
+            
+            if fullDel {
+                
+            } else {
+                
+            }
+        } else {
+            for child in children {
+                child.del(id: id, fullDel: fullDel)
+            }
+        }
+    }
+    
+    func isRoot() -> Bool {
+        parent == ""
     }
 }
 
@@ -100,25 +141,30 @@ extension Node {
     }
     
     private static func getDefaultNode() -> Node {
-        var root = Node()
+        let root = Node()
         root.title = "Root"
         
-        var child1 = Node()
+        let child1 = Node()
         child1.title = "Child1"
+        child1.parent = root.id
         
-        var child11 = Node()
+        let child11 = Node()
         child11.title = "processes in a system share the CPU and main memory with other processes. However, sharing the main memory poses some special challenges."
+        child11.parent = child1.id
         
-        var child12 = Node()
+        let child12 = Node()
         child12.title = "Error Handling"
+        child12.parent = child1.id
         
         child1.children = [child11, child12]
         
-        var child2 = Node()
+        let child2 = Node()
         child2.title = "Let us define the operation +uw for arguments x and y, where 0 ≤ x, y < 2w, as the result of truncating the integer sum x + y to be w bits long and then viewing the result as an unsigned number. This can be characterized as a form of modular arithmetic, computing the sum modulo 2w by simply discarding any bits with weight greater than 2w−1 in the bit-level representation of x + y."
+        child2.parent = root.id
         
-        var child3 = Node()
+        let child3 = Node()
         child3.title = "Child3"
+        child3.parent = root.id
         
         root.children = [child1, child2, child3]
         
