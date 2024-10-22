@@ -183,7 +183,7 @@ function getNodesPosition(node, parentNode = null, parentPos = null, isRoot = tr
 
 function renderNodes(positions) {
 
-    // var elementslist = [];
+    elementslist = [];
 
     positions.forEach(position => {
         var node = getNodeById(position.id)
@@ -201,21 +201,11 @@ function renderNodes(positions) {
         }
         elementslist.push([e, node]);
     });
-
-    /// 与拖拽冲突
-//    canvas.addEventListener('click', function(event) {
-//        hideContextMenu()
-//        elementslist.forEach(element => {
-//            if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-//                alert('node click placeholder：\n更过功能请右键单击节点')
-//            }
-//        })
-//    });
 }
 
 function setLine() {
     positions.forEach(pos => {
-        let node  = getNodeById(pos.id);
+        let node = getNodeById(pos.id);
         if (node.children != null && node.children.length > 0) {
             setLineWith(pos, node, 15);
         }
@@ -361,6 +351,16 @@ canvas.addEventListener('contextmenu', function(event) {
     })
 });
 
+/// 与拖拽冲突
+//    canvas.addEventListener('click', function(event) {
+//        hideContextMenu()
+//        elementslist.forEach(element => {
+//            if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
+//                alert('node click placeholder：\n更过功能请右键单击节点')
+//            }
+//        })
+//    });
+
 //// Draggable
 
 let isDragging = false;
@@ -373,7 +373,7 @@ let startY = 0;
 let lastX = 0;
 let lastY = 0;
 
-let crossingNodes = [];
+//let crossingNodes = [];
 
 function clearPreviousLine() {
     if (prevLine) {
@@ -407,7 +407,7 @@ canvas.addEventListener('mousedown', function(event) {
             isDragging = true;
             prevLine = null;
             startNode = element[1];
-            crossingNodes.push(element[1]);
+//            crossingNodes.push(element[1]);
         }
     })
 });
@@ -432,7 +432,7 @@ canvas.addEventListener('mouseup', () => {
                 
                 //set drag end node here
                 endNode = element[1];
-                crossingNodes.push(element[1]);
+//                crossingNodes.push(element[1]);
             }
         })
         
@@ -444,27 +444,34 @@ canvas.addEventListener('mouseup', () => {
 });
 
 function drawCrossingNode() {
-    let crossingPositions = positions.filter(pos =>
-        crossingNodes.some(node => node.id === pos.id)
-    );
+    //以下实现无法解决节点间连线被抹除的问题
+//    let crossingPositions = positions.filter(pos =>
+//        crossingNodes.some(node => node.id === pos.id)
+//    );
+//    
+//    crossingPositions.forEach(position => {
+//        ctx.clearRect(position.x - 1, position.y - 1, position.width + 2, position.height + 2);
+//        var node = getNodeById(position.id)
+//        const e = new Path2D();
+//        ctx.lineWidth = 1;
+//
+//        e.roundRect(position.x, position.y, position.width, position.height, radius);
+//        ctx.strokeStyle = 'green';
+//        ctx.stroke(e);
+//        setFontSize(18);
+//        let lines = position.lines
+//        let lineHeight = position.lineHeight
+//        for (var i = 0; i < lines.length; i++) {
+//            //参数y标注的是文字的底部位置
+//            ctx.fillText(lines[i], position.x + nodeMargin * 0.5, position.y + (i+1) * lineHeight)
+//        }
+//    });
     
-    crossingPositions.forEach(position => {
-        ctx.clearRect(position.x - 1, position.y - 1, position.width + 2, position.height + 2);
-        var node = getNodeById(position.id)
-        const e = new Path2D();
-        ctx.lineWidth = 1;
-
-        e.roundRect(position.x, position.y, position.width, position.height, radius);
-        ctx.strokeStyle = 'green';
-        ctx.stroke(e);
-        setFontSize(18);
-        let lines = position.lines
-        let lineHeight = position.lineHeight
-        for (var i = 0; i < lines.length; i++) {
-            //参数y标注的是文字的底部位置
-            ctx.fillText(lines[i], position.x + nodeMargin * 0.5, position.y + (i+1) * lineHeight)
-        }
-    });
+    ///当前实现会清空画布完全重绘，开销更大，但暂时没有更好的办法
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 1;
+    renderNodes(positions);
+    setLine();
 }
 
 
