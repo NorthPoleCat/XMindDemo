@@ -38,5 +38,13 @@ struct XMindDemoApp: App {
         .windowStyle(HiddenTitleBarWindowStyle())
         .windowToolbarStyle(.unified)
         .windowResizability(.contentSize)
+        
+        WindowGroup(id: "Drag", for: String.self) { $id in
+            DragNodeWindow(id ?? "")
+                .frame(width: 400, height: 260)
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowToolbarStyle(.unified)
+        .windowResizability(.contentSize)
     }
 }

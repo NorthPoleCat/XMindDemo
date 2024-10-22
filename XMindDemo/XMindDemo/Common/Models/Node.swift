@@ -41,6 +41,10 @@ class Node: Codable {
         content = node.content
     }
     
+    /// 当前 增/删/改/取 的方法必须由根节点调用才能得到正确的结果
+    /// 出现如此丑陋的设计是因为本demo数据保存为json，而不是由可以正确维系局部节点间的父子关系的数据库保存
+    /// 如果想在 增/删/改/取 等操作后保存整个树形结构，需要在开始时就全部加载
+    
     func getNodes(by id: [String]) -> [Node] {
         var stack: [Node] = [self]
         var result: [Node] = []
@@ -113,6 +117,38 @@ class Node: Codable {
         } else {
             for child in children {
                 child.del(id: id, parent: parent, fullDel: fullDel)
+            }
+        }
+    }
+    
+    func move(startId: String, end: Node, parent: Node, fullRemove: Bool = true) {
+        
+        if parent.id == end.id || startId == end.id {
+            return
+        }
+        
+        if id == startId {
+            if isRoot() {
+                //不支持改变root节点层级结构
+                return
+            }
+            
+            if children.contains(where: { $0.id == end.id }) {
+                //不支持父节点移动到其子节点之下
+                return
+            }
+            
+            if !fullRemove {
+                parent.children.append(contentsOf: children)
+                children = []
+            }
+            
+            end.children.append(self)
+            self.parent = end.id
+            
+        } else {
+            for child in children {
+                child.move(startId: startId, end: end, parent: parent, fullRemove: fullRemove)
             }
         }
     }

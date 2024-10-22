@@ -16,6 +16,11 @@ struct DelNodeWindow: View {
     
     init(_ dictString: String) {
         let params = dictString.split(separator: ":").map { String($0) }
+        if params.count < 2 {
+            self.delId = ""
+            self.parentId = ""
+            return
+        }
         self.delId = params[0]
         self.parentId = params[1]
     }
@@ -31,6 +36,9 @@ struct DelNodeWindow: View {
             .padding()
             
             Button {
+                if delId == "" || parentId == "" {
+                    return
+                }
                 let root = CommonUtils.shared.getData(for: .canvas)
                 guard let parent = root.getNode(by: parentId) else { return }
                 root.del(id: delId, parent: parent)
@@ -42,6 +50,9 @@ struct DelNodeWindow: View {
             }
             
             Button {
+                if delId == "" || parentId == "" {
+                    return
+                }
                 let root = CommonUtils.shared.getData(for: .canvas)
                 guard let parent = root.getNode(by: parentId) else { return }
                 root.del(id: delId, parent: parent, fullDel: false)

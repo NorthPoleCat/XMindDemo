@@ -23,6 +23,7 @@ struct WebViewWrapper: NSViewRepresentable {
         configuration.userContentController.add(context.coordinator, name: "editNode")
         configuration.userContentController.add(context.coordinator, name: "addNode")
         configuration.userContentController.add(context.coordinator, name: "delNode")
+        configuration.userContentController.add(context.coordinator, name: "dragNode")
         
         let webView =  WKWebView(frame: .zero, configuration: configuration)
         webView.isInspectable = true
@@ -83,6 +84,14 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
                 return
             }
             OpenWindows.DelNode.open(openAction: openWindow, param: id + ":" + parent)
+        } else if message.name == "dragNode" {
+            guard let dict: Dictionary = message.body as? [String: String],
+                    let start = dict["start"],
+                    let end = dict["end"],
+                    let parent = dict["parent"] else {
+                return
+            }
+            OpenWindows.Drag.open(openAction: openWindow, param: start + ":" + end + ":" + parent)
         }
     }
     

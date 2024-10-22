@@ -70,7 +70,6 @@ var canvasH = 0;
 var canvasW = 0;
 
 window.onload = function() {
-    //每次加载调用
     window.webkit.messageHandlers.load.postMessage('');
 }
 
@@ -216,7 +215,6 @@ function setLine() {
 //length为第二段折线长度
 //height为中间竖线长度
 function setLineWith(pos, node, length) {
-    //this code is for fixed node width 150
     let beginX = pos.x + pos.width;
     let beginY = pos.y + pos.height * 0.5;
     
@@ -293,7 +291,7 @@ function calculateNode(node) {
 }
 
 //在没有子节点时，此函数返回的是node本身的高度
-//在有子节点时，此函数返回的是此node所有子节点的总高度
+//在有子节点时，此函数返回的是 Max(此node所有子节点的总高度, node本身高度)
 function childrenHeight(node) {
     let cH = 0;
     if (node.children == null || node.children.length == 0) {
@@ -419,7 +417,7 @@ canvas.addEventListener('mousemove', (e) => {
         lastX = e.clientX - rect.left;
         lastY = e.clientY - rect.top;
 
-        drawLine(startX, startY, lastX, lastY); // 每次移动时只画最新的线条
+        drawLine(startX, startY, lastX, lastY);
     }
 });
 
@@ -435,6 +433,15 @@ canvas.addEventListener('mouseup', () => {
 //                crossingNodes.push(element[1]);
             }
         })
+        
+        if (startNode && endNode) {
+            var dict = {
+                "start": startNode.id,
+                "end": endNode.id,
+                "parent": startNode.parent
+            };
+            window.webkit.messageHandlers.dragNode.postMessage(dict)
+        }
         
         clearPreviousLine();
         prevLine = null;
