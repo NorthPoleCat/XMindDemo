@@ -24,7 +24,6 @@
 		8C8BBC2E2CC159DB006627C0 /* MindMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */; };
 		8C8BBC312CC16024006627C0 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC302CC16024006627C0 /* Enum.swift */; };
 		8CDACBC82CC68FC7007C700F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDACBC72CC68FC7007C700F /* AlertView.swift */; };
-		8CDACBCA2CC726AD007C700F /* draggable.js in Resources */ = {isa = PBXBuildFile; fileRef = 8CDACBC92CC726AD007C700F /* draggable.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +46,6 @@
 		8C8BBC2D2CC159DB006627C0 /* MindMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindMapView.swift; sourceTree = "<group>"; };
 		8C8BBC302CC16024006627C0 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		8CDACBC72CC68FC7007C700F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		8CDACBC92CC726AD007C700F /* draggable.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = draggable.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +114,6 @@
 			children = (
 				8C65389F2CC523F600CEB260 /* Views */,
 				8C8BBC1C2CC14772006627C0 /* menu.js */,
-				8CDACBC92CC726AD007C700F /* draggable.js */,
 				8C8BBC202CC14772006627C0 /* mindMapping.html */,
 				8C8BBC1D2CC14772006627C0 /* mindMapping.js */,
 				8C8BBC1F2CC14772006627C0 /* sidebar.js */,
@@ -229,7 +226,6 @@
 				8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */,
 				8C8BBC222CC14772006627C0 /* menu.js in Resources */,
 				8C8BBC232CC14772006627C0 /* mindMapping.js in Resources */,
-				8CDACBCA2CC726AD007C700F /* draggable.js in Resources */,
 				8C8BBC252CC14772006627C0 /* sidebar.js in Resources */,
 				8C8BBC262CC14772006627C0 /* mindMapping.html in Resources */,
 			);

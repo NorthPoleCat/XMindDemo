@@ -202,23 +202,15 @@ function renderNodes(positions) {
         elementslist.push([e, node]);
     });
 
-    canvas.addEventListener('click', function(event) {
-        hideContextMenu()
-        elementslist.forEach(element => {
-            if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-                alert('node click placeholder：\n更过功能请右键单击节点')
-            }
-        })
-    });
-    
-    canvas.addEventListener('contextmenu', function(event) {
-        event.preventDefault();//屏蔽默认的‘重新载入’选项
-        elementslist.forEach(element => {
-            if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-                showContextMenu(event.clientX, event.clientY, element[1]);
-            }
-        })
-    });
+    /// 与拖拽冲突
+//    canvas.addEventListener('click', function(event) {
+//        hideContextMenu()
+//        elementslist.forEach(element => {
+//            if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
+//                alert('node click placeholder：\n更过功能请右键单击节点')
+//            }
+//        })
+//    });
 }
 
 function setLine() {
@@ -360,6 +352,15 @@ function maxNodeHight(node) {
     return Math.max(node.height, node.childrenHeight);
 }
 
+canvas.addEventListener('contextmenu', function(event) {
+    event.preventDefault();//屏蔽默认的‘重新载入’选项
+    elementslist.forEach(element => {
+        if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
+            showContextMenu(event.clientX, event.clientY, element[1]);
+        }
+    })
+});
+
 //// Draggable
 
 let isDragging = false;
@@ -384,6 +385,7 @@ function clearPreviousLine() {
 
 function drawLine(x1, y1, x2, y2) {
     clearPreviousLine();
+    
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -395,6 +397,7 @@ function drawLine(x1, y1, x2, y2) {
 }
 
 canvas.addEventListener('mousedown', function(event) {
+    if (event.button !== 0) return;  // 只允许鼠标左键触发
     hideContextMenu()
     elementslist.forEach(element => {
         if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
@@ -403,12 +406,14 @@ canvas.addEventListener('mousedown', function(event) {
             startY = event.clientY - rect.top;
             isDragging = true;
             prevLine = null;
-            crossingNodes.push(element)
+            startNode = element[1];
+            crossingNodes.push(element[1]);
         }
     })
 });
 
 canvas.addEventListener('mousemove', (e) => {
+    if (event.button !== 0) return;  // 只允许鼠标左键触发
     if (isDragging) {
         const rect = canvas.getBoundingClientRect();
         lastX = e.clientX - rect.left;
@@ -419,22 +424,47 @@ canvas.addEventListener('mousemove', (e) => {
 });
 
 canvas.addEventListener('mouseup', () => {
-    isDragging = false;
-
-    elementslist.forEach(element => {
-        if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-            
-            //set drag end node here
-            crossingNodes.push(element)
-        }
-    })
-    
-    clearPreviousLine();
-    prevLine = null;
+    if (event.button !== 0) return;  // 只允许鼠标左键触发
+    if (isDragging) {
+        isDragging = false;
+        elementslist.forEach(element => {
+            if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
+                
+                //set drag end node here
+                endNode = element[1];
+                crossingNodes.push(element[1]);
+            }
+        })
+        
+        clearPreviousLine();
+        prevLine = null;
+        startNode = null;
+        endNode = null;
+    }
 });
 
 function drawCrossingNode() {
+    let crossingPositions = positions.filter(pos =>
+        crossingNodes.some(node => node.id === pos.id)
+    );
     
+    crossingPositions.forEach(position => {
+        ctx.clearRect(position.x - 1, position.y - 1, position.width + 2, position.height + 2);
+        var node = getNodeById(position.id)
+        const e = new Path2D();
+        ctx.lineWidth = 1;
+
+        e.roundRect(position.x, position.y, position.width, position.height, radius);
+        ctx.strokeStyle = 'green';
+        ctx.stroke(e);
+        setFontSize(18);
+        let lines = position.lines
+        let lineHeight = position.lineHeight
+        for (var i = 0; i < lines.length; i++) {
+            //参数y标注的是文字的底部位置
+            ctx.fillText(lines[i], position.x + nodeMargin * 0.5, position.y + (i+1) * lineHeight)
+        }
+    });
 }
 
 
