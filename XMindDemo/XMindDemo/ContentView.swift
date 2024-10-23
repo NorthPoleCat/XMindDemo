@@ -25,10 +25,18 @@ struct ContentView: View {
     
     @ViewBuilder
     private func listRow(_ mindType: MindType) -> some View {
-        Text(mindType.rowTitle())
-            .onTapGesture {
-                currentType = mindType
-            }
+        HStack {
+            Text(mindType.rowTitle())
+            Spacer()
+        }
+        .padding(5)
+        .onTapGesture {
+            currentType = mindType
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: 2)
+                .stroke(currentType == mindType ? Color.blue : Color.clear, lineWidth: 2)
+        )
     }
     
     @ViewBuilder

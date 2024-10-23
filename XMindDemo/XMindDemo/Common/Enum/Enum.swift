@@ -47,3 +47,7 @@ enum OpenWindows: String, CaseIterable {
         openAction(id: self.rawValue, value: pa)
     }
 }
+
+enum MoveStatus {
+    case notMoving, moving, success, rootInvalid, childInvalid, endInvalid
+}

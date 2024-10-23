@@ -10,6 +10,8 @@ import SwiftUI
 struct DragNodeWindow: View {
     @Environment(\.dismiss) private var dismiss
     
+    @State var movingStatus: MoveStatus = .notMoving
+    
     private var start: String
     private var end: String
     private var parent: String
@@ -41,7 +43,7 @@ struct DragNodeWindow: View {
                 let root = CommonUtils.shared.getData(for: .canvas)
                 guard let end = root.getNode(by: end),
                         let startParent = root.getNode(by: parent) else { return }
-                root.move(startId: start, end: end, parent: startParent)
+                movingStatus = root.move(startId: start, end: end, parent: startParent)
                 root.save(.canvas)
                 RefreshTrigger.shared.refresh()
                 dismiss()
@@ -53,7 +55,7 @@ struct DragNodeWindow: View {
                 let root = CommonUtils.shared.getData(for: .canvas)
                 guard let end = root.getNode(by: end),
                       let startParent = root.getNode(by: parent) else { return }
-                root.move(startId: start, end: end, parent: startParent, fullRemove: false)
+                movingStatus = root.move(startId: start, end: end, parent: startParent, fullRemove: false)
                 root.save(.canvas)
                 RefreshTrigger.shared.refresh()
                 dismiss()

@@ -115,6 +115,7 @@ class Node: Codable {
             
             parent.children = parent.children.filter { $0.id != id }
             self.parent = ""
+            return
             
         } else {
             for child in children {
@@ -123,21 +124,21 @@ class Node: Codable {
         }
     }
     
-    func move(startId: String, end: Node, parent: Node, fullRemove: Bool = true) {
+    func move(startId: String, end: Node, parent: Node, fullRemove: Bool = true) -> MoveStatus {
         
         if parent.id == end.id || startId == end.id {
-            return
+            return .endInvalid
         }
         
         if id == startId {
             if isRoot() {
                 //不支持改变root节点层级结构
-                return
+                return .rootInvalid
             }
             
             if children.contains(where: { $0.id == end.id }) {
                 //不支持父节点移动到其子节点之下
-                return
+                return .childInvalid
             }
             
             if !fullRemove {
@@ -145,15 +146,23 @@ class Node: Codable {
                 children = []
             }
             
-            end.children.append(self)
             parent.children = parent.children.filter { $0.id != startId }
+            end.children.append(self)
             self.parent = end.id
             
+            return .success
+            
         } else {
+            var movingStatus: MoveStatus = .moving
             for child in children {
-                child.move(startId: startId, end: end, parent: parent, fullRemove: fullRemove)
+                movingStatus = child.move(startId: startId, end: end, parent: parent, fullRemove: fullRemove)
+                if movingStatus != .moving {
+                    return movingStatus
+                }
             }
         }
+        
+        return .moving
     }
     
     func isRoot() -> Bool {
