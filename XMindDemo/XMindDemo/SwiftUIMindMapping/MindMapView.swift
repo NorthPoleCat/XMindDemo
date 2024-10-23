@@ -11,6 +11,7 @@ struct MindMapView: View {
     @State var offset: CGSize = .zero    // 当前的位移
     @State private var lastOffset: CGSize = .zero // 拖动结束后的位移
     @EnvironmentObject private var refresh: RefreshTrigger
+    @Environment(\.openWindow) private var openWindow
     var node: Node
     
     var body: some View {
@@ -22,13 +23,9 @@ struct MindMapView: View {
                 .cornerRadius(10)
                 .foregroundColor(.white)
                 .offset(offset)
-//                .gesture(
-//                    DragGesture()
-//                        .onChanged { value in
-//                            self.offset = value.translation
-//                        }
-//                )
-//                .gesture(dragGesture)
+                .onTapGesture {
+                    OpenWindows.Alert.open(openAction: openWindow, param: "这里可以触发增删改操作，因与canvas版逻辑相同，故不重复实现。")
+                }
                         
             let startPoint = CGPoint(x: offset.width + 50, y: offset.height + 20)  // 父节点的中心点
             
