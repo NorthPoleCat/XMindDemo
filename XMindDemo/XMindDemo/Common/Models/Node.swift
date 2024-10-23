@@ -67,7 +67,9 @@ class Node: Codable {
             return self
         } else {
             for child in children {
-                return child.getNode(by: id)
+                if let node = child.getNode(by: id) {
+                    return node
+                }
             }
         }
         return nil
@@ -144,6 +146,7 @@ class Node: Codable {
             }
             
             end.children.append(self)
+            parent.children = parent.children.filter { $0.id != startId }
             self.parent = end.id
             
         } else {
