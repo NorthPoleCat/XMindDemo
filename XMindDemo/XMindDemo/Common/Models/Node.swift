@@ -26,6 +26,11 @@ class Node: Codable {
     var parent: String = "" //parentId
     var children: [Node] = []
     
+    /// weight 属性在没有子节点时为1
+    /// 在有子节点时为所有子节点权重之和
+    /// 此属性用于拥有固定节点高度的思维导图的offset计算（于本demo中，为native mindmap）
+    var weight: Int = 0 //for native mindmap only
+    
     private init() {
         id = UUID().uuidString
     }
@@ -190,6 +195,21 @@ extension Node {
         } catch {
             print("Failed to save file: \(error)")
         }
+    }
+    
+    func calculateWeight(force: Bool = false) -> Int {
+        /// 避免重复计算
+        if !force, weight > 0 {
+            return weight
+        }
+        
+        if children.isEmpty {
+            weight = 1
+        } else {
+            weight = children.reduce(0) { $0 + $1.calculateWeight() }
+        }
+        
+        return weight
     }
     
     private func jsonData() -> Data? {
