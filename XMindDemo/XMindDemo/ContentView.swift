@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentType: MindType = .canvas
+    @State var currentType: MindType = .canvas {
+        didSet {
+            CommonUtils.shared.mindType = currentType
+        }
+    }
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(MindType.allCases, id: \.self) { type in
-                    listRow(type)
-                }
+            ForEach(MindType.allCases, id: \.self) { type in
+                listRow(type)
             }
+                        
+            Button {
+                CommonUtils.shared.reset()
+            } label: {
+                Text("Clean Cache")
+            }
+            .padding(.top, 25)
+            
+            Spacer()
+
         } detail: {
 //            Text("test native")
             mindView

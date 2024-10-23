@@ -40,11 +40,11 @@ struct DragNodeWindow: View {
             .padding()
             
             Button {
-                let root = CommonUtils.shared.getData(for: .canvas)
+                let root = CommonUtils.shared.getData(for: CommonUtils.shared.mindType)
                 guard let end = root.getNode(by: end),
                         let startParent = root.getNode(by: parent) else { return }
                 movingStatus = root.move(startId: start, end: end, parent: startParent)
-                root.save(.canvas)
+                root.save(CommonUtils.shared.mindType)
                 RefreshTrigger.shared.refresh()
                 dismiss()
             } label: {
@@ -52,11 +52,11 @@ struct DragNodeWindow: View {
             }
             
             Button {
-                let root = CommonUtils.shared.getData(for: .canvas)
+                let root = CommonUtils.shared.getData(for: CommonUtils.shared.mindType)
                 guard let end = root.getNode(by: end),
                       let startParent = root.getNode(by: parent) else { return }
                 movingStatus = root.move(startId: start, end: end, parent: startParent, fullRemove: false)
-                root.save(.canvas)
+                root.save(CommonUtils.shared.mindType)
                 RefreshTrigger.shared.refresh()
                 dismiss()
             } label: {

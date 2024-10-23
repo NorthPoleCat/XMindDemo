@@ -103,6 +103,7 @@ class MessageHandler: NSObject, WKScriptMessageHandler, WKUIDelegate {
     
     func reloadMindMap() {
         let n = CommonUtils.shared.getData(for: .canvas)
+        n.save(.canvas)
         let jsonString = n.rootJson()
         let escapedString = jsonString.replacingOccurrences(of: "\\", with: "\\\\")
                     .replacingOccurrences(of: "\"", with: "\\\"")

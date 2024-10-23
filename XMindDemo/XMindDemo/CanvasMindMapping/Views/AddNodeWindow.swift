@@ -35,9 +35,9 @@ struct AddNodeWindow: View {
                     addNode.title = title
                     addNode.content = content
                     
-                    let root = CommonUtils.shared.getData(for: .canvas)
+                    let root = CommonUtils.shared.getData(for: CommonUtils.shared.mindType)
                     root.add(parentId: parentId, node: addNode)
-                    root.save(.canvas)
+                    root.save(CommonUtils.shared.mindType)
                     RefreshTrigger.shared.refresh()
                     dismiss()
                 } label: {

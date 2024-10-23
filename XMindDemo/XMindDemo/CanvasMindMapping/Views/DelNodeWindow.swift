@@ -39,10 +39,10 @@ struct DelNodeWindow: View {
                 if delId == "" || parentId == "" {
                     return
                 }
-                let root = CommonUtils.shared.getData(for: .canvas)
+                let root = CommonUtils.shared.getData(for: CommonUtils.shared.mindType)
                 guard let parent = root.getNode(by: parentId) else { return }
                 root.del(id: delId, parent: parent)
-                root.save(.canvas)
+                root.save(CommonUtils.shared.mindType)
                 RefreshTrigger.shared.refresh()
                 dismiss()
             } label: {
@@ -53,10 +53,10 @@ struct DelNodeWindow: View {
                 if delId == "" || parentId == "" {
                     return
                 }
-                let root = CommonUtils.shared.getData(for: .canvas)
+                let root = CommonUtils.shared.getData(for: CommonUtils.shared.mindType)
                 guard let parent = root.getNode(by: parentId) else { return }
                 root.del(id: delId, parent: parent, fullDel: false)
-                root.save(.canvas)
+                root.save(CommonUtils.shared.mindType)
                 RefreshTrigger.shared.refresh()
                 dismiss()
             } label: {

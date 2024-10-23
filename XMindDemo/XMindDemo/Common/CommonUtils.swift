@@ -10,7 +10,16 @@ import Foundation
 class CommonUtils {
     static let shared = CommonUtils()
     
+    var mindType: MindType = .canvas
+    
+    private var cleanCache: Bool = false
+    
     func getData(for type: MindType) -> Node {
+        if cleanCache {
+            cleanCache = false
+            return Node.defaultNode
+        }
+            
         guard let fileURL = CommonUtils.shared.getStorePath(type) else { return Node.defaultNode }
         
         do {
@@ -37,5 +46,10 @@ class CommonUtils {
         }
         
         return URL(fileURLWithPath: filePath)
+    }
+    
+    func reset() {
+        cleanCache = true
+        RefreshTrigger.shared.refresh()
     }
 }
