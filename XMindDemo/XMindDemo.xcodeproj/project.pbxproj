@@ -25,8 +25,6 @@
 		8C8BBC312CC16024006627C0 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BBC302CC16024006627C0 /* Enum.swift */; };
 		8CDACBC82CC68FC7007C700F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDACBC72CC68FC7007C700F /* AlertView.swift */; };
 		8CDACBCC2CC7E446007C700F /* DragNodeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDACBCB2CC7E446007C700F /* DragNodeWindow.swift */; };
-		8CDACBD22CC94675007C700F /* canvas.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CDACBD12CC94675007C700F /* canvas.png */; };
-		8CDACBD42CC9467B007C700F /* native.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CDACBD32CC9467B007C700F /* native.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +48,6 @@
 		8C8BBC302CC16024006627C0 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		8CDACBC72CC68FC7007C700F /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		8CDACBCB2CC7E446007C700F /* DragNodeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragNodeWindow.swift; sourceTree = "<group>"; };
-		8CDACBD12CC94675007C700F /* canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = canvas.png; sourceTree = "<group>"; };
-		8CDACBD32CC9467B007C700F /* native.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = native.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +91,6 @@
 		8C8BBC0A2CC0AEB0006627C0 /* XMindDemo */ = {
 			isa = PBXGroup;
 			children = (
-				8CDACBD02CC94645007C700F /* Images */,
 				8C8BBC292CC15876006627C0 /* Common */,
 				8C8BBC282CC14BE7006627C0 /* CMindMaker */,
 				8C8BBC272CC14BD2006627C0 /* SwiftUIMindMapping */,
@@ -172,15 +167,6 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		8CDACBD02CC94645007C700F /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				8CDACBD32CC9467B007C700F /* native.png */,
-				8CDACBD12CC94675007C700F /* canvas.png */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,11 +225,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CDACBD22CC94675007C700F /* canvas.png in Resources */,
 				8C8BBC132CC0AEB1006627C0 /* Preview Assets.xcassets in Resources */,
 				8C8BBC102CC0AEB1006627C0 /* Assets.xcassets in Resources */,
 				8C8BBC222CC14772006627C0 /* menu.js in Resources */,
-				8CDACBD42CC9467B007C700F /* native.png in Resources */,
 				8C8BBC232CC14772006627C0 /* mindMapping.js in Resources */,
 				8C8BBC252CC14772006627C0 /* sidebar.js in Resources */,
 				8C8BBC262CC14772006627C0 /* mindMapping.html in Resources */,
