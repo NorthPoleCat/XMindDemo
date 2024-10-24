@@ -44,8 +44,12 @@ struct DragNodeWindow: View {
                 guard let end = root.getNode(by: end),
                         let startParent = root.getNode(by: parent) else { return }
                 movingStatus = root.move(startId: start, end: end, parent: startParent)
-                root.save(CommonUtils.shared.mindType)
-                RefreshTrigger.shared.refresh()
+                if movingStatus == .success {
+                    root.save(CommonUtils.shared.mindType)
+                    RefreshTrigger.shared.refresh()
+                } else {
+                    showAlert()
+                }
                 dismiss()
             } label: {
                 Text("Option 1")
@@ -56,8 +60,12 @@ struct DragNodeWindow: View {
                 guard let end = root.getNode(by: end),
                       let startParent = root.getNode(by: parent) else { return }
                 movingStatus = root.move(startId: start, end: end, parent: startParent, fullRemove: false)
-                root.save(CommonUtils.shared.mindType)
-                RefreshTrigger.shared.refresh()
+                if movingStatus == .success {
+                    root.save(CommonUtils.shared.mindType)
+                    RefreshTrigger.shared.refresh()
+                } else {
+                    showAlert()
+                }
                 dismiss()
             } label: {
                 Text("Option 2")
@@ -65,5 +73,25 @@ struct DragNodeWindow: View {
             
             Spacer()
         }
+    }
+    
+    func showAlert() {
+        let alert = NSAlert()
+        alert.alertStyle = .warning
+        alert.messageText = "Invalid Move"
+        
+        switch movingStatus {
+        case .rootInvalid:
+            alert.informativeText = "不支持改变root节点层级结构"
+        case .childInvalid:
+            alert.informativeText = "不支持父节点移动到其子节点之下"
+        case .endInvalid:
+            alert.informativeText = "不能移动至自身或自身原本的父节点"
+        default:
+            return
+        }
+
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
     }
 }
