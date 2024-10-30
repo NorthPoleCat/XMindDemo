@@ -344,7 +344,7 @@ canvas.addEventListener('contextmenu', function(event) {
     event.preventDefault();//屏蔽默认的‘重新载入’选项
     elementslist.forEach(element => {
         if (ctx.isPointInPath(element[0], event.offsetX*PIXEL_RATIO, event.offsetY*PIXEL_RATIO)) {
-            showContextMenu(event.clientX, event.clientY, element[1]);
+            showContextMenu(event.pageX, event.pageY, element[1]);
         }
     })
 });
